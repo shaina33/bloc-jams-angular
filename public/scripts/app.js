@@ -1,12 +1,7 @@
-var express = require('express');
-var app = express();
-app.use(express.static('public'));
-app.listen(3000);
-
 (function() {
     function config($stateProvider, $locationProvider) {
         $locationProvider
-            .html5mode({
+            .html5Mode({
                 enabled: true,
                 requireBase: false
             });
@@ -17,11 +12,15 @@ app.listen(3000);
             })
             .state('album', {
                 url: '/album',
-                templateUrl: 'templates/album.html'
+                templateUrl: '/templates/album.html'
+            })
+            .state('collection', {
+                url: '/collection',
+                templateUrl: '/templates/collection.html'
             });
     }
     
     angular
-        .module('blocJams', ['ui-router'])
+        .module('blocJams', ['ui.router'])
         .config(config);
 })();
