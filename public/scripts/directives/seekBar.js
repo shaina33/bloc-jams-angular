@@ -48,10 +48,19 @@
                 /**
                 * @function scope.fillStyle
                 * @desc Prep for updating bar fill CSS
-                * @return {String}
+                * @return {Object}
                 */
                 scope.fillStyle = function() {
                     return {width: percentString()};
+                };
+                
+                /**
+                * @function scope.thumbStyle
+                * @desc Prep for updating thumb position CSS
+                * @return {Object}
+                */
+                scope.thumbStyle = function() {
+                    return {left: percentString()};
                 };
                 
                 /**
