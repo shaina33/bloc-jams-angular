@@ -13,7 +13,9 @@
             templateUrl: '/templates/directives/seek_bar.html',
             replace: true,
             restrict: 'E',
-            scope: { },
+            scope: {
+                onChange: '&'
+            },
             link: function(scope, element, attributes) {
                 /**
                 * @desc Horizontal position value
@@ -34,6 +36,16 @@
                 var seekBar = $(element);
                 
                 /**
+                * watch for updates to <seek-bar> attribute values
+                */
+                attributes.$observe('value', function(newValue) {
+                    scope.value = newValue;
+                });
+                attributes.$observe('max', function(newValue) {
+                    scope.max = newValue;
+                });
+                
+                /**
                 * @function percentString
                 * @desc Calculate percentage of horizontal position value
                 * @return {String}
@@ -43,6 +55,17 @@
                     var max = scope.max;
                     var percent = value / max * 100;
                     return percent + "%";
+                };
+                
+                /**
+                * @function notifyOnChange
+                * @desc Call onChange using updated value
+                * @param {Number} newValue
+                */
+                var notifyOnChange = function(newValue) {
+                    if (typeof scope.onChange === 'function') {
+                        scope.onChange({value: newValue});
+                    }
                 };
                 
                 /**
@@ -70,6 +93,7 @@
                 scope.onClickSeekBar = function(event) {
                     var percent = calculatePercent(seekBar, event);
                     scope.value = percent * scope.max;
+                    notifyOnChange(scope.value);
                 };
                 
                 /**
@@ -81,6 +105,7 @@
                         var percent = calculatePercent(seekBar, event);
                         scope.$apply(function() {
                             scope.value = percent * scope.max;
+                            notifyOnChange(scope.value);
                         });
                     });
                     $document.bind('mouseup.thumb', function() {
