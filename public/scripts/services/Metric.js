@@ -15,8 +15,15 @@
             date = new Date();
             album = Fixtures.getAlbum();
             $rootScope.metricData[date] = [album.title, album.artist, song.title];
-            console.log(date);
-            console.log($rootScope.metricData[date]);
+            // logging for testing
+            console.log('New entry at '+date+': '+$rootScope.metricData[date]);
+            console.log('All entries so far...')
+            count = 0
+            for (date in $rootScope.metricData) {
+                console.log(date+': '+$rootScope.metricData[date]);
+                count++
+            }
+            console.log('Total metric data entries: '+count);
         }
         
         return Metric;

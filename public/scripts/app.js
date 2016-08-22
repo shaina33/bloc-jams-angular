@@ -20,6 +20,11 @@
                 url: '/collection',
                 controller: 'CollectionCtrl as collection',
                 templateUrl: '/templates/collection.html'
+            })
+            .state('metrics', {
+                url: '/metrics',
+                controller: 'MetricsCtrl as metrics',
+                templateUrl: '/templates/metrics.html'
             });
     }
     
