@@ -1,5 +1,5 @@
 (function() {
-    function SongPlayer($rootScope, Fixtures) {
+    function SongPlayer($rootScope, Fixtures, Metric) {
         /**
         * @desc the SongPlayer returned by the service
         * @type {Object}
@@ -37,6 +37,7 @@
                 });
             });
             SongPlayer.currentSong = song;
+            Metric.addEntry(song);
         };
         
         /**
@@ -174,5 +175,5 @@
 
     angular
         .module('blocJams')
-        .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
+        .factory('SongPlayer', ['$rootScope', 'Fixtures', 'Metric', SongPlayer]);
 })();
