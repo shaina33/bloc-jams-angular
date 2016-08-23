@@ -1,2 +1,7 @@
 <h2>BlocJams Metrics</h2>
-<div>{{ metrics.metricData[0] }}</div>
+<ul ng-repeat="record in metricData">
+    <li>{{ record.date | datedisplay }}</li>
+    <li>{{ record.artist }}</li>
+    <li>{{ record.album }}</li>
+    <li>{{ record.song }}</li>
+</ul>
