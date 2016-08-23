@@ -22,15 +22,14 @@
                 artist: album.artist,
                 song: song.title
             });
-            // logging for testing //
-            console.log('New entry at '+date+': '+$rootScope.metricData[date]);
-            console.log('All entries so far...')
-            count = 0
-            for (date in $rootScope.metricData) {
-                console.log(date+': '+$rootScope.metricData[date]);
-                count++
-            }
-            console.log('Total metric data entries: '+count);
+            /* logging for testing */
+//            console.log('All entries so far...')
+//            count = 0
+//            for (entry in $rootScope.metricData) {
+//                console.log($rootScope.metricData[entry].date+': '+$rootScope.metricData[entry].song);
+//                count++
+//            }
+//            console.log('Total metric data entries: '+count);
         }
         
         return Metric;
