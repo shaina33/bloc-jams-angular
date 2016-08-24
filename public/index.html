@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <title>Bloc Jams Angular</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--    external styles-->
+<!-- external styles -->
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,800,600,700,300">
     <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<!--    local styles-->
+<!-- local styles -->
     <link rel="stylesheet" type="text/css" href="/styles/normalize.css">
     <link rel="stylesheet" type="text/css" href="/styles/main.css">
     <link rel="stylesheet" type="text/css" href="/styles/landing.css">
     <link rel="stylesheet" type="text/css" href="/styles/collection.css">
     <link rel="stylesheet" type="text/css" href="/styles/album.css">
     <link rel="stylesheet" type="text/css" href="/styles/player_bar.css">
+    <link rel="stylesheet" tpye="text/css" href="/styles/metrics.css">
 </head>
 <body>
     <nav class="navbar">
@@ -28,6 +29,7 @@
     
     <ui-view></ui-view>
     
+    <!-- External Scripts -->
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
@@ -36,17 +38,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.2/nv.d3.min.js"></script>
     <script src="https://rawgit.com/krispo/angular-nvd3/v1.0.6/dist/angular-nvd3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+    <!-- Local Scripts -->
     <script src="/scripts/app.js"></script>
     <script src="/scripts/services/Fixtures.js"></script>
-    <script src="scripts/services/Metric.js"></script>
+    <script src="/scripts/services/Metric.js"></script>
     <script src="/scripts/services/SongPlayer.js"></script>
     <script src="/scripts/controllers/LandingCtrl.js"></script>
     <script src="/scripts/controllers/CollectionCtrl.js"></script>
     <script src="/scripts/controllers/AlbumCtrl.js"></script>
     <script src="/scripts/controllers/PlayerBarCtrl.js"></script>
-    <script src="scripts/controllers/MetricsCtrl.js"></script>
-    <script src="scripts/directives/seekBar.js"></script>
-    <script src="scripts/filters/timecode.js"></script>
-    <script src="scripts/filters/datedisplay.js"></script>
+    <script src="/scripts/controllers/MetricsCtrl.js"></script>
+    <script src="/scripts/directives/seekBar.js"></script>
+    <script src="/scripts/filters/timecode.js"></script>
+    <script src="/scripts/filters/datedisplay.js"></script>
 </body>
 </html>

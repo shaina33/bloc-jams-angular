@@ -29,6 +29,6 @@
     }
     
     angular
-        .module('blocJams', ['ui.router', 'nvd3'])
+        .module('blocJams', ['ui.router', 'nvd3', 'ngStorage'])
         .config(config);
 })();

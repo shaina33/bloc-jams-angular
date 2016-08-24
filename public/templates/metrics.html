@@ -1,5 +1,6 @@
 <h2>BlocJams Metrics</h2>
 <nvd3 options="metrics.songpieOptions" data="metrics.songpieData"></nvd3>
+<p ng-click="metrics.resetData()" class="clickable">Reset Metrics Data</p>
 <ul ng-repeat="record in metrics.metricData">
     <li>{{ record.date | datedisplay }}</li>
     <li>{{ record.artist }}</li>

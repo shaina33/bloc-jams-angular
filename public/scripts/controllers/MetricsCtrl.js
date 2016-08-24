@@ -1,5 +1,5 @@
 (function() {
-    function MetricsCtrl($rootScope, Metric) {
+    function MetricsCtrl($rootScope, $localStorage, Metric) {
         this.metricData = $rootScope.metricData;
         
         /* Song Pie Chart */
@@ -11,7 +11,7 @@
         */
         var getSongpieData = function(data) {
             var myData = data;
-            var songData = [];
+            var songData = $localStorage.songData || [];
             for (var entry in myData) {
                 found = false;
                 for (var song in songData) {
@@ -27,7 +27,14 @@
                     });
                 }
             }
+            $localStorage.songData = songData;
             return songData
+        };
+        
+        this.resetData = function() {
+            alert('Are you sure you want to reset all metrics data?');
+            $localStorage.songData = [];
+            $rootScope.metricData = [];
         }
         
         /**
