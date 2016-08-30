@@ -32,9 +32,10 @@
         };
         
         this.resetData = function() {
-            alert('Are you sure you want to reset all metrics data?');
-            $localStorage.songData = [];
-            $rootScope.metricData = [];
+            if (confirm('This action will reset all metrics data!')) {
+                $localStorage.songData = [];
+                $rootScope.metricData = [];
+            }
         }
         
         /**
@@ -42,6 +43,7 @@
         * @type {Array of Objects} Formatted for angular-nvd3
         */
         this.songpieData = getSongpieData($rootScope.metricData);
+        //$scope.$watch($rootScope.metricData, getSongpieData);
         
         /**
         * @desc Holds chart options for song pie chart

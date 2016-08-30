@@ -16,7 +16,7 @@
         * @desc data for current album
         * @type {Object}
         */
-        var currentAlbum = Fixtures.getAlbum();
+        //var currentAlbum = Fixtures.getAlbum();
         
         /**
         * @function setSong
@@ -62,11 +62,20 @@
         
         /**
         * @function getSongIndex
-        * @desc gets index of a song from its album
+        * @desc gets index of a song from the current album
         * @param {Object} song
         */
         var getSongIndex = function(song) {
-            return currentAlbum.songs.indexOf(song);
+            console.log('song: '+ song.title);
+            console.log('album: '+Fixtures.getAlbum().title);
+            //return currentAlbum.songs.indexOf(song);
+            //return Fixtures.getAlbum().songs.indexOf(song);
+            for (var index in Fixtures.getAlbum().songs) {
+                if (Fixtures.getAlbum().songs[index].title === song.title) {
+                    return index
+                }
+            };
+            return -1;
         };
         
         /**
@@ -126,7 +135,8 @@
             if (currentSongIndex < 0) {
                 stopSong(SongPlayer.currentSong);
             } else {
-                var song = currentAlbum.songs[currentSongIndex];
+                //var song = currentAlbum.songs[currentSongIndex];
+                var song = Fixtures.getAlbum().songs[currentSongIndex];
                 setSong(song);
                 playSong(song);
             }
@@ -136,15 +146,23 @@
         * @desc Play the next song on the album
         */
         SongPlayer.next = function(){
+            console.log('next function called');
             var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+            console.log('currentSongIndex: '+currentSongIndex);
             currentSongIndex++;
+            console.log('currentSongIndex now: '+currentSongIndex);
+            
+            var currentAlbum = Fixtures.getAlbum();
+
             
             if (currentSongIndex === currentAlbum.songs.length) {
                 stopSong(SongPlayer.currentSong);
+                console.log('stop playing');
             } else {
                 var song = currentAlbum.songs[currentSongIndex];
                 setSong(song);
                 playSong(song);
+                console.log('play song: '+song.title);
             }
         };
         

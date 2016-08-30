@@ -1,5 +1,5 @@
 (function() {
-    function Fixtures() {
+    function Fixtures($rootScope) {
         var Fixtures = {};
         
         var albumPicasso = {
@@ -23,21 +23,26 @@
              year: '1909',
              albumArtUrl: '/assets/images/album_covers/20.png',
              songs: [
-                 { title: 'Hello, Operator?', duration: '1:01' },
-                 { title: 'Ring, ring, ring', duration: '5:01' },
-                 { title: 'Fits in your pocket', duration: '3:21'},
-                 { title: 'Can you hear me now?', duration: '3:14' },
-                 { title: 'Wrong phone number', duration: '2:15'}
+                 { title: 'Hello, Operator?', duration: 61, audioURL: 'assets/music/green' },
+                 { title: 'Ring, ring, ring', duration: 301, audioURL: 'assets/music/green' },
+                 { title: 'Fits in your pocket', duration: 201, audioURL: 'assets/music/green'},
+                 { title: 'Can you hear me now?', duration: 194, audioURL: 'assets/music/green' },
+                 { title: 'Wrong phone number', duration: 135, audioURL: 'assets/music/green'}
              ]
          };
         
         Fixtures.getAlbum = function() {
-            return albumPicasso;
+            index = $rootScope.albumID || 0;
+            //console.log('getAlbum says album index is '+index);
+            return Fixtures.getCollection()[index];
         };
-        Fixtures.getCollection = function(numberofAlbums) {
+        // Seed Data for collection of albums //
+        Fixtures.getCollection = function() {
+            var numberofAlbums = 8;
             var collection = [];
             for (var i=0; i<numberofAlbums; i++) {
                 collection.push(angular.copy(albumPicasso));
+                collection.push(angular.copy(albumMarconi));
             }
             return collection;
         };
