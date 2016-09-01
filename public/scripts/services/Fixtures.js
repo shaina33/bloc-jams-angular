@@ -1,7 +1,12 @@
 (function() {
     function Fixtures($rootScope) {
         var Fixtures = {};
+        Fixtures.getAlbum = function() {
+            index = $rootScope.albumID || 0;
+            return Fixtures.collection[index];
+        };
         
+        // Seed Data for collection of albums //
         var albumPicasso = {
              title: 'The Colors',
              artist: 'Pablo Picasso',
@@ -30,22 +35,15 @@
                  { title: 'Wrong phone number', duration: 135, audioURL: 'assets/music/green'}
              ]
          };
-        
-        Fixtures.getAlbum = function() {
-            index = $rootScope.albumID || 0;
-            //console.log('getAlbum says album index is '+index);
-            return Fixtures.getCollection()[index];
-        };
-        // Seed Data for collection of albums //
-        Fixtures.getCollection = function() {
-            var numberofAlbums = 8;
+        var makeCollection = function(numberOfAlbums) {
             var collection = [];
-            for (var i=0; i<numberofAlbums; i++) {
+            for (var i=0; i<numberOfAlbums; i++) {
                 collection.push(angular.copy(albumPicasso));
                 collection.push(angular.copy(albumMarconi));
             }
             return collection;
         };
+        Fixtures.collection = makeCollection(8)
         
         return Fixtures;
     }

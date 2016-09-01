@@ -13,12 +13,6 @@
         var currentBuzzObject = null;
         
         /**
-        * @desc data for current album
-        * @type {Object}
-        */
-        //var currentAlbum = Fixtures.getAlbum();
-        
-        /**
         * @function setSong
         * @desc Stops currently playing song & loads new audio file
         * @param {Object} song
@@ -66,16 +60,7 @@
         * @param {Object} song
         */
         var getSongIndex = function(song) {
-            console.log('song: '+ song.title);
-            console.log('album: '+Fixtures.getAlbum().title);
-            //return currentAlbum.songs.indexOf(song);
-            //return Fixtures.getAlbum().songs.indexOf(song);
-            for (var index in Fixtures.getAlbum().songs) {
-                if (Fixtures.getAlbum().songs[index].title === song.title) {
-                    return index
-                }
-            };
-            return -1;
+            return Fixtures.getAlbum().songs.indexOf(song);
         };
         
         /**
@@ -146,23 +131,17 @@
         * @desc Play the next song on the album
         */
         SongPlayer.next = function(){
-            console.log('next function called');
             var currentSongIndex = getSongIndex(SongPlayer.currentSong);
-            console.log('currentSongIndex: '+currentSongIndex);
             currentSongIndex++;
-            console.log('currentSongIndex now: '+currentSongIndex);
             
-            var currentAlbum = Fixtures.getAlbum();
-
+            var currentSongList = Fixtures.getAlbum().songs;
             
-            if (currentSongIndex === currentAlbum.songs.length) {
+            if (currentSongIndex === currentSongList.length) {
                 stopSong(SongPlayer.currentSong);
-                console.log('stop playing');
             } else {
-                var song = currentAlbum.songs[currentSongIndex];
+                var song = currentSongList[currentSongIndex];
                 setSong(song);
                 playSong(song);
-                console.log('play song: '+song.title);
             }
         };
         

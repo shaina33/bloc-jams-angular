@@ -1,5 +1,5 @@
 (function() {
-    function MetricsCtrl($rootScope, $localStorage, Metric) {
+    function MetricsCtrl($scope, $rootScope, $localStorage, Metric) {
         this.metricData = $rootScope.metricData;
         
         /* Song Pie Chart */
@@ -10,6 +10,10 @@
         * @parameter {Array of Objects} data
         */
         var getSongpieData = function(data) {
+            //console.log('data received is: '+data);
+//            if (data === []) {
+//                return [];
+//            }
             var myData = data;
             var songData = $localStorage.songData || [];
             for (var entry in myData) {
@@ -33,17 +37,26 @@
         
         this.resetData = function() {
             if (confirm('This action will reset all metrics data!')) {
-                $localStorage.songData = [];
-                $rootScope.metricData = [];
+                //$scope.$apply(function() {
+                    $localStorage.songData = [];
+                    $rootScope.metricData = [];
+                    this.songpieData = [];
+                //})
             }
-        }
+            //$scope.$apply();
+        };
         
         /**
         * @desc Holds data for song pie chart
         * @type {Array of Objects} Formatted for angular-nvd3
         */
         this.songpieData = getSongpieData($rootScope.metricData);
-        //$scope.$watch($rootScope.metricData, getSongpieData);
+        //$scope.$watch($rootScope.metricData, updateSongpieData);
+        
+//        var updateSongpieData = function(data) {
+//            console.log('updating');
+//            this.songpieData = getSongpieData(data);
+//        };
         
         /**
         * @desc Holds chart options for song pie chart
