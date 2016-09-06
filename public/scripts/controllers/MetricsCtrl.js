@@ -19,14 +19,14 @@
             for (var entry in myData) {
                 found = false;
                 for (var song in songData) {
-                    if (songData[song].key === myData[entry].song+', '+myData[entry].artist) {
+                    if (songData[song].key === myData[entry].song+' - '+myData[entry].artist) {
                         songData[song].y ++;
                         found = true
                     }
                 }
                 if (found === false) {
                     songData.push( {
-                        key: myData[entry].song+', '+myData[entry].artist,
+                        key: myData[entry].song+' - '+myData[entry].artist,
                         y: 1
                     });
                 }
@@ -72,32 +72,46 @@
                 duration: 500,
                 labelThreshold: 0.10,
                 labelSunbeamLayout: false,
-                legendPosition: 'right',
-                legend: {
+                valueFormat: (function(d) {
+                    return d;
+                    }),
+                legendPosition: 'top',
+                legend: { //30,70,5,0
                     margin: {
-                        top: 30,
-                        right: 70,
-                        bottom: 5,
-                        left: 0
+                        top: 10,
+                        right: 30,
+                        bottom: 10,
+                        left: 50
                     },
                     align: true,
+                    rightAlign: false,
                     maxKeyLength: 50
                 },
                 pie: {
-                    growOnHover: true
+                    growOnHover: true,
+                    labelType: 'key'
+                },
+                tooltip: {
+                    keyFormatter: (function(d) {
+                        return d+': ';
+                    })
                 },
                 styles: {
                     css: {
                         color: 'white'
                     }
                 }
+//                margin: {
+//                    left: 50,
+//                    right: 50
+//                }
             },
             title: {
-                    enable: true,
-                    text: 'Most Popular Songs',
-                    className: 'h3'
+                    enable: false,
+                    text: 'Your Most Played Songs',
+                    className: 'h2'
             }
-        };
+        }
     }
     
     angular
