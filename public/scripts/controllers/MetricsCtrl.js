@@ -10,10 +10,6 @@
         * @parameter {Array of Objects} data
         */
         var getSongpieData = function(data) {
-            //console.log('data received is: '+data);
-//            if (data === []) {
-//                return [];
-//            }
             var myData = data;
             var songData = $localStorage.songData || [];
             for (var entry in myData) {
@@ -35,15 +31,15 @@
             return songData
         };
         
+        /**
+        * @desc Empties metric data for song pie chart
+        */
         this.resetData = function() {
             if (confirm('This action will reset all metrics data!')) {
-                //$scope.$apply(function() {
                     $localStorage.songData = [];
                     $rootScope.metricData = [];
                     this.songpieData = [];
-                //})
             }
-            //$scope.$apply();
         };
         
         /**
@@ -51,12 +47,6 @@
         * @type {Array of Objects} Formatted for angular-nvd3
         */
         this.songpieData = getSongpieData($rootScope.metricData);
-        //$scope.$watch($rootScope.metricData, updateSongpieData);
-        
-//        var updateSongpieData = function(data) {
-//            console.log('updating');
-//            this.songpieData = getSongpieData(data);
-//        };
         
         /**
         * @desc Holds chart options for song pie chart
@@ -76,7 +66,7 @@
                     return d;
                     }),
                 legendPosition: 'top',
-                legend: { //30,70,5,0
+                legend: {
                     margin: {
                         top: 10,
                         right: 30,
@@ -101,10 +91,6 @@
                         color: 'white'
                     }
                 }
-//                margin: {
-//                    left: 50,
-//                    right: 50
-//                }
             },
             title: {
                     enable: false,
